@@ -1,5 +1,6 @@
 package Umc.Percol.controller;
 
+import Umc.Percol.service.IncenseService;
 import Umc.Percol.service.StoreService;
 import Umc.Percol.service.UserService;
 import Umc.Percol.web.dto.IncenseDTO;
@@ -22,6 +23,7 @@ public class PercolController {
 
     private final StoreService storeService;
     private final UserService userService;
+    private final IncenseService incenseService;
 
     //메인화면
     @GetMapping("/")
@@ -101,7 +103,17 @@ public class PercolController {
         return "myPage"; // myPage.html 템플릿으로 반환
     }
 
+    @GetMapping("/Mbti")
+    public String getMbtiAction(@RequestParam Long id, Model model) {
+        IncenseDTO incenseDto = incenseService.mbtiIncense(id);
+        IncenseDTO incenseDto2 = incenseService.mbtiIncense(id+1);
 
+        model.addAttribute("incenseDto", incenseDto);
+        model.addAttribute("incenseDto2", incenseDto2);
+        return "mbtiAction";
+
+
+    }
 
 
 
