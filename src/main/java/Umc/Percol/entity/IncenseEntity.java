@@ -22,6 +22,9 @@ public class IncenseEntity extends TimeEntity {
     private String name;
 
     @Column
+    private String image;
+
+    @Column
     private String type;
 
     @Column
