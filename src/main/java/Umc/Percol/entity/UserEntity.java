@@ -31,11 +31,11 @@ public class UserEntity extends TimeEntity {
     private String marketingAgree;
 
     //mappedBy는 entity의 이름을 같게 해줘야함
-    @OneToMany(mappedBy = "UserEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<WishPerfumeEntity> WishPerfumeEntityList = new ArrayList<>();
 
     //mappedBy는 entity의 이름을 같게 해줘야함
-    @OneToMany(mappedBy = "UserEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<WishIncenseEntity> WishIncenseEntityList = new ArrayList<>();
 
 

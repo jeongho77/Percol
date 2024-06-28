@@ -27,13 +27,13 @@ public class IncenseEntity extends TimeEntity {
     @Column
     private String content;
 
-    @OneToMany(mappedBy = "IncenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "incenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<WishIncenseEntity> WishIncenseEntityList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "IncenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "incenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<MatchEntity> MatchEntityList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "IncenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "incenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<HoldEntity> HoldEntityList = new ArrayList<>();
 
 

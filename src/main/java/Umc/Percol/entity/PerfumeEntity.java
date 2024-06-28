@@ -35,10 +35,10 @@ public class PerfumeEntity extends TimeEntity {
     private String buyUrl;
 
     //mappedBy는 entity의 이름을 같게 해줘야함
-    @OneToMany(mappedBy = "PerfumeEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "perfumeEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<WishPerfumeEntity> WishPerfumeEntityList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "PerfumeEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "perfumeEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<MatchEntity> MatchEntityList = new ArrayList<>();
 
 
