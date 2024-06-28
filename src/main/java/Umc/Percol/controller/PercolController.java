@@ -76,10 +76,19 @@ public class PercolController {
 
         return "PerfumeShop";
     }
+
     @GetMapping("/PerfumeFind/{name}") //향수 검색
-    public String PerfumeFind(PathVariable name ,Model model){
-        storeService.findName(name);
+    public String PerfumeFind(String name ,Model model){
+        List<PerfumeDTO> PerfumeDTOList = storeService.findName(name);
+
+        model.addAttribute("perfumeList", PerfumeDTOList);
+
+        return "detail";
     }
+
+
+
+
 
 
 

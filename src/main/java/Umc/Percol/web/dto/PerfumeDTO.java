@@ -30,6 +30,7 @@ public class PerfumeDTO {
         this.buyUrl = buyUrl;
     }
 
+
     public static PerfumeDTO toPerfumeDTO(PerfumeEntity perfumeEntity){
         PerfumeDTO perfumeDTO = new PerfumeDTO();
         perfumeDTO.setId(perfumeEntity.getId());
@@ -42,4 +43,6 @@ public class PerfumeDTO {
         perfumeDTO.setLastModifiedDate(perfumeEntity.getLastModifiedDate());
         return perfumeDTO;
     }
+
+
 }

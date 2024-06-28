@@ -3,6 +3,7 @@ package Umc.Percol.service;
 import Umc.Percol.entity.IncenseEntity;
 import Umc.Percol.entity.PerfumeEntity;
 import Umc.Percol.entity.ShopEntity;
+import Umc.Percol.repository.Find_PerfumeRepository;
 import Umc.Percol.repository.IncenseRepository;
 import Umc.Percol.repository.PerfumeRepository;
 import Umc.Percol.web.dto.IncenseDTO;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -96,8 +98,19 @@ public class StoreService {
         return incenseDTOS;
     }
 
-    public void findName(PathVariable name) {
-        PerfumeRepository.
-
+    public List<PerfumeDTO> findName(String name) {
+        List<PerfumeEntity> perfumeEntities = perfumeRepository.findByNameContaining(name);
+        return perfumeEntities.stream().map(this::convertToDto).collect(Collectors.toList());
     }
+
+    private PerfumeDTO convertToDto(PerfumeEntity perfumeEntity) {
+        PerfumeDTO perfumeDTO = new PerfumeDTO();
+        perfumeDTO.setId(perfumeEntity.getId());
+        perfumeDTO.setName(perfumeEntity.getName());
+        perfumeDTO.setContent(perfumeEntity.getContent());
+        perfumeDTO.setImage(perfumeEntity.getImage());
+        return perfumeDTO;
+    }
+
+
 }

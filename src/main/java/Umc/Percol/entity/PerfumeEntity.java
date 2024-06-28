@@ -25,7 +25,7 @@ public class PerfumeEntity extends TimeEntity {
     @Column
     private String image;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @Column
