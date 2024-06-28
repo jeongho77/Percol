@@ -8,7 +8,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class WorkShopEntity extends TimeEntity {
+@Table(name = "shop")
+public class ShopEntity extends TimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

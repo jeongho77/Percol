@@ -30,6 +30,12 @@ public class IncenseEntity extends TimeEntity {
     @OneToMany(mappedBy = "IncenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<WishIncenseEntity> WishIncenseEntityList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "IncenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<MatchEntity> MatchEntityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "IncenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<HoldEntity> HoldEntityList = new ArrayList<>();
+
 
 
 }
