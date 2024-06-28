@@ -29,6 +29,7 @@ public class StoreService {
     private final IncenseRepository incenseRepository;
 
     //Perfume 모든걸 조회
+    @Transactional
     public List<PerfumeDTO> PerfumeFindAll() {
         List<PerfumeEntity> PerfumeEntityList = perfumeRepository.findAll();
         List<PerfumeDTO> PerfumeDTOList = new ArrayList<>();
@@ -98,10 +99,12 @@ public class StoreService {
         return incenseDTOS;
     }
 
+    @Transactional
     public List<PerfumeDTO> findName(String name) {
         List<PerfumeEntity> perfumeEntities = perfumeRepository.findByNameContaining(name);
         return perfumeEntities.stream().map(this::convertToDto).collect(Collectors.toList());
     }
+
 
     private PerfumeDTO convertToDto(PerfumeEntity perfumeEntity) {
         PerfumeDTO perfumeDTO = new PerfumeDTO();
