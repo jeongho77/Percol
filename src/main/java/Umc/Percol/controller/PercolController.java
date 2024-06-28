@@ -1,8 +1,10 @@
 package Umc.Percol.controller;
 
 import Umc.Percol.service.StoreService;
+import Umc.Percol.service.UserService;
 import Umc.Percol.web.dto.IncenseDTO;
 import Umc.Percol.web.dto.PerfumeDTO;
+import Umc.Percol.web.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,7 @@ import java.util.List;
 public class PercolController {
 
     private final StoreService storeService;
+    private final UserService userService;
 
     //메인화면
     @GetMapping("/")
@@ -84,6 +87,16 @@ public class PercolController {
         model.addAttribute("perfumeList", PerfumeDTOList);
 
         return "detail";
+    }
+
+    //마이페이지 조회
+    @PostMapping("/MyPage")
+    public String myPage(@ModelAttribute("id") Long id, Model model) {
+
+        UserDTO userDto = userService.findUserById(id);
+        model.addAttribute("user", userDto);
+
+        return "myPage"; // myPage.html 템플릿으로 반환
     }
 
 

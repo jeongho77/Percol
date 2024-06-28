@@ -36,9 +36,6 @@ public class UserDTO {
         userDTO.setCreatedTime(userEntity.getCreatedDate());
         userDTO.setUpdatedTime(userEntity.getLastModifiedDate());
 
-        userDTO.setWishPerfumeEntityList(new ArrayList<>(userEntity.getWishPerfumeEntityList()));
-        userDTO.setWishIncensEntityList(new ArrayList<>(userEntity.getWishIncenseEntityList()));
-
         return userDTO;
     }
 }
