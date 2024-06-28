@@ -29,6 +29,14 @@ public class IncenseDTO {
     private List<MatchEntity> matchEntityList;
     private List<HoldEntity> holdEntityList;
 
+    public IncenseDTO(Long id, String name, String image, String type, String content) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.type = type;
+        this.content = content;
+    }
+
     public static IncenseDTO toIncenseDTO(IncenseEntity incenseEntity) {
         IncenseDTO incenseDTO = new IncenseDTO();
         incenseDTO.setId(incenseEntity.getId());

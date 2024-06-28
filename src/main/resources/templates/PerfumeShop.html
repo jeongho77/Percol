@@ -27,11 +27,11 @@
 </table>
 <!-- 첫번째 페이지로 이동 -->
 <!-- /perfume/paging?page=1 -->
-<a th:href="@{/perfume/paging(page=1)}">First</a>
+<a th:href="@{/percol/PerfumeShop(page=1)}">First</a>
 
 <!-- 이전 링크 활성화 비활성화 -->
 <!-- perfumeList.getNumber() 사용자:2페이지 getNumber()=1 -->
-<a th:href="${perFumeList.first} ? '#' : @{/perfume/paging(page=${perfumeList.number})}">prev</a>
+<a th:href="${perFumeList.first} ? '#' : @{/percol/PerfumeShop(page=${perFumeList.number})}">prev</a>
 
 <!-- 페이지 번호 링크(현재 페이지는 숫자만)
         for(int page=startPage; page<=endPage; page++)-->
@@ -40,15 +40,15 @@
     <span th:if="${page == perFumeList.number + 1}" th:text="${page}"></span>
     <!-- 현재페이지 번호가 아닌 다른 페이지번호에는 링크를 보여줌 -->
     <span th:unless="${page == perFumeList.number + 1}">
-        <a th:href="@{/perporm/paging(page=${page})}" th:text="${page}"></a>
+        <a th:href="@{/percol/PerfumeShop(page=${page})}" th:text="${page}"></a>
     </span>
 </span>
 
 <!-- 다음 링크 활성화 비활성화
     사용자: 2페이지, getNumber: 1, +2를해서 다음페이지인 3페이지 보여주기-->
-<a th:href="${perFumeList.last} ? '#' : @{/perfume/paging(page=${perFumeList.number + 2})}">next</a>
+<a th:href="${perFumeList.last} ? '#' : @{/percol/PerfumeShop(page=${perFumeList.number + 2})}">next</a>
 <!-- 마지막 페이지로 이동 -->
-<a th:href="@{/perfume/paging(page=${perFumeList.totalPages})}">Last</a>
+<a th:href="@{/percol/PerfumeShop(page=${perFumeList.totalPages})}">Last</a>
 
 </body>
 <script>

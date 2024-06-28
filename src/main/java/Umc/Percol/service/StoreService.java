@@ -1,10 +1,13 @@
 package Umc.Percol.service;
 
+import Umc.Percol.entity.IncenseEntity;
 import Umc.Percol.entity.PerfumeEntity;
 import Umc.Percol.entity.ShopEntity;
 import Umc.Percol.repository.IncenseRepository;
 import Umc.Percol.repository.PerfumeRepository;
+import Umc.Percol.web.dto.IncenseDTO;
 import Umc.Percol.web.dto.PerfumeDTO;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,6 +38,7 @@ public class StoreService {
     }
 
     //Perfume 모든걸 조회 + 페이징
+    @Transactional
     public Page<PerfumeDTO> paging(Pageable pageable) {
         int page = pageable.getPageNumber() - 1; // 페이지 0부터 시작해서 -1 해줘야함
         int pageLimit = 3; // 한페이지에 보여줄 글 갯수
@@ -64,4 +68,30 @@ public class StoreService {
         return PerfumeDTOS;
     }
 
+    @Transactional
+    public Page<IncenseDTO> IncensePaging(Pageable pageable) {
+        int page = pageable.getPageNumber() - 1; // 페이지 0부터 시작해서 -1 해줘야함
+        int pageLimit = 3; // 한페이지에 보여줄 글 갯수
+        //한 페이지당 3개씩 글을 보여주고 정렬 기준은 id 기준으로 내림차순 정렬
+        Page<IncenseEntity> IncenseEntities
+                = incenseRepository.findAll(PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC,"id")));
+
+        System.out.println("boardEntities.getContent() = " + IncenseEntities.getContent()); // 요청 페이지에 해당하는 글
+        System.out.println("boardEntities.getTotalElements() = " + IncenseEntities.getTotalElements()); // 전체 글갯수
+        System.out.println("boardEntities.getNumber() = " + IncenseEntities.getNumber()); // DB로 요청한 페이지 번호
+        System.out.println("boardEntities.getTotalPages() = " + IncenseEntities.getTotalPages()); // 전체 페이지 갯수
+        System.out.println("boardEntities.getSize() = " + IncenseEntities.getSize()); // 한 페이지에 보여지는 글 갯수
+        System.out.println("boardEntities.hasPrevious() = " + IncenseEntities.hasPrevious()); // 이전 페이지 존재 여부
+        System.out.println("boardEntities.isFirst() = " + IncenseEntities.isFirst()); // 첫 페이지 여부
+        System.out.println("boardEntities.isLast() = " + IncenseEntities.isLast()); // 마지막 페이지 여부
+
+        Page<IncenseDTO> incenseDTOS = IncenseEntities.map(incense -> new IncenseDTO(
+                incense.getId(),
+                incense.getName(),
+                incense.getImage(),
+                incense.getType(),
+                incense.getContent()));
+
+        return incenseDTOS;
+    }
 }

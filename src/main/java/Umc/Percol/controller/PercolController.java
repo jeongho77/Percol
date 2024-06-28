@@ -1,6 +1,7 @@
 package Umc.Percol.controller;
 
 import Umc.Percol.service.StoreService;
+import Umc.Percol.web.dto.IncenseDTO;
 import Umc.Percol.web.dto.PerfumeDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -42,7 +43,7 @@ public class PercolController {
 
     // /board/paging?page=1
     @GetMapping("/PerfumeShop") //pageable import 잘 확인하기
-    public String paging(@PageableDefault(page = 1) Pageable pageable , Model model){
+    public String PerfumeStore(@PageableDefault(page = 1) Pageable pageable , Model model){
         pageable.getPageNumber();
         Page<PerfumeDTO> perFumeList = storeService.paging(pageable);
         int blockLimit = 3;
@@ -50,6 +51,21 @@ public class PercolController {
         int endPage = ((startPage + blockLimit - 1) < perFumeList.getTotalPages()) ? startPage + blockLimit - 1 : perFumeList.getTotalPages();
 
         model.addAttribute("perFumeList", perFumeList);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return "PerfumeShop";
+    }
+
+    @GetMapping("/IncenseShop") //pageable import 잘 확인하기
+    public String IncenseStore(@PageableDefault(page = 1) Pageable pageable , Model model){
+        pageable.getPageNumber();
+        Page<IncenseDTO> incenseList = storeService.IncensePaging(pageable);
+        int blockLimit = 3;
+        int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1; // 1 4 7 10 ~~
+        int endPage = ((startPage + blockLimit - 1) < incenseList.getTotalPages()) ? startPage + blockLimit - 1 : incenseList.getTotalPages();
+
+        model.addAttribute("incenseList", incenseList);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
