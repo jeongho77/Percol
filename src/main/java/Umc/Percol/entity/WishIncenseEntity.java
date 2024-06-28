@@ -19,7 +19,7 @@ public class WishIncenseEntity {
     private UserEntity userEntity; //어차피 프라이머리키가 들어가있음 UserEntity 타입형 잘보기
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "perfume_id")
+    @JoinColumn(name = "incense_id")
     private IncenseEntity incenseEntity; //어차피 프라이머리키가 들어가있음 UserEntity 타입형 잘보기
 
 

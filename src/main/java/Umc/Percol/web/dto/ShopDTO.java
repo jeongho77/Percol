@@ -4,6 +4,8 @@ import Umc.Percol.entity.HoldEntity;
 import Umc.Percol.entity.ShopEntity;
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,6 +20,8 @@ public class ShopDTO {
     private String representative;
     private String phone;
     private String content;
+    private LocalDateTime createdTime;
+    private LocalDateTime updatedTime;
 
     private List<HoldEntity> holdEntityList;
 
@@ -28,6 +32,9 @@ public class ShopDTO {
         shopDTO.setRepresentative(shopEntity.getRepresentative());
         shopDTO.setPhone(shopEntity.getPhone());
         shopDTO.setContent(shopEntity.getContent());
-        shopDTO.setCreated
+        shopDTO.setCreatedTime(shopEntity.getCreatedDate());
+        shopDTO.setUpdatedTime(shopEntity.getLastModifiedDate());
+
+        return shopDTO;
     }
 }
