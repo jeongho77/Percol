@@ -27,6 +27,11 @@ public class PercolController {
     }
 
     //로그인 후 메인화면 정보
+    @PostMapping("/main")
+    public String login(@PathVariable Long id){
+        return "delete";
+    }
+
     @PostMapping("/delete/{providerId}")
     public String delete(@PathVariable Long id){
         return "delete";

@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/login")
+@RequestMapping("/user")
 public class LoginController {
 
     //로그인화면 ( 카카오 , 네이버 선택)
     @GetMapping("/")
-    public String login(){
+    public String index(){
         return "login";
     }
 
@@ -28,5 +28,6 @@ public class LoginController {
     public String naverLogin(){
         return "naver-login";
     }
+
 
 }
