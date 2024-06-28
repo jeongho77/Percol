@@ -7,6 +7,8 @@ import Umc.Percol.web.dto.IncenseDTO;
 import Umc.Percol.web.dto.PerfumeDTO;
 import Umc.Percol.web.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -20,6 +22,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/percol")
 public class PercolController {
+
+
+
+    private static final Logger log = LoggerFactory.getLogger(PercolController.class);
 
     private final StoreService storeService;
     private final UserService userService;
@@ -85,12 +91,13 @@ public class PercolController {
     }
 
     @GetMapping("/PerfumeFind/{name}") //향수 검색
-    public String PerfumeFind(String name ,Model model){
+    public String PerfumeFind(@PathVariable String name ,Model model){
         List<PerfumeDTO> PerfumeDTOList = storeService.findName(name);
 
+        log.info("PerfumeDTOList: {}", PerfumeDTOList);
         model.addAttribute("perfumeList", PerfumeDTOList);
 
-        return "detail";
+        return "index";
     }
 
     //마이페이지 조회
@@ -112,12 +119,5 @@ public class PercolController {
         model.addAttribute("incenseDto2", incenseDto2);
         return "mbtiAction";
 
-
     }
-
-
-
-
-
-
 }

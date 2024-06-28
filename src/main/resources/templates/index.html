@@ -2,9 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>Perfume List</title>
 </head>
 <body>
-
+<h1>Perfume List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Content</th>
+        <th>Price</th>
+        <th>Buy URL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="perfume : ${perfumeList}">
+        <td th:text="${perfume.id}"></td>
+        <td th:text="${perfume.name}"></td>
+        <td><img th:src="${perfume.image}" alt="Image" style="max-width: 100px;"/></td>
+        <td th:text="${perfume.content}"></td>
+        <td th:text="${perfume.price}"></td>
+        <td><a th:href="${perfume.buyUrl}" th:text="${perfume.buyUrl}"></a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
