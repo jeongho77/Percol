@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MBTI Action</title>
+</head>
+<body>
+<h1>MBTI Incense Details</h1>
+<h2>Incense 1</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <td th:text="${incenseDto.id}"></td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td th:text="${incenseDto.name}"></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td th:text="${incenseDto.content}"></td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td th:text="${incenseDto.image}"></td>
+    </tr>
+    <tr>
+        <th>MBTI</th>
+        <td th:text="${incenseDto.type}"></td>
+    </tr>
+</table>
+
+<h2>Incense 2</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <td th:text="${incenseDto2.id}"></td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td th:text="${incenseDto2.name}"></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td th:text="${incenseDto2.content}"></td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td th:text="${incenseDto2.image}"></td>
+    </tr>
+    <tr>
+        <th>MBTI</th>
+        <td th:text="${incenseDto2.type}"></td>
+    </tr>
+</table>
+</body>
+</html>

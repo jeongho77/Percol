@@ -23,8 +23,6 @@ import java.util.List;
 @RequestMapping("/percol")
 public class PercolController {
 
-
-
     private static final Logger log = LoggerFactory.getLogger(PercolController.class);
 
     private final StoreService storeService;
@@ -91,13 +89,13 @@ public class PercolController {
     }
 
     @GetMapping("/PerfumeFind/{name}") //향수 검색
-    public String PerfumeFind(@PathVariable String name ,Model model){
+    public List<PerfumeDTO> PerfumeFind(@PathVariable String name ,Model model){
         List<PerfumeDTO> PerfumeDTOList = storeService.findName(name);
 
         log.info("PerfumeDTOList: {}", PerfumeDTOList);
         model.addAttribute("perfumeList", PerfumeDTOList);
 
-        return "index";
+        return PerfumeDTOList;
     }
 
     //마이페이지 조회
@@ -110,8 +108,10 @@ public class PercolController {
         return "myPage"; // myPage.html 템플릿으로 반환
     }
 
-    @GetMapping("/Mbti")
-    public String getMbtiAction(@RequestParam Long id, Model model) {
+
+    //MBTI 테스트
+    @GetMapping("/Mbti/{id}")
+    public String getMbtiAction(@PathVariable Long id, Model model) {
         IncenseDTO incenseDto = incenseService.mbtiIncense(id);
         IncenseDTO incenseDto2 = incenseService.mbtiIncense(id+1);
 
