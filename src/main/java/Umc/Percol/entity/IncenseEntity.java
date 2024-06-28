@@ -5,9 +5,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
+@Table(name = "Incense")
 public class IncenseEntity extends TimeEntity {
 
     @Id
@@ -22,6 +26,10 @@ public class IncenseEntity extends TimeEntity {
 
     @Column
     private String content;
+
+    @OneToMany(mappedBy = "IncenseEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<WishIncenseEntity> WishIncenseEntityList = new ArrayList<>();
+
 
 
 }
