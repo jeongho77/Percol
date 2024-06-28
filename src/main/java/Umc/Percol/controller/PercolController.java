@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/percol")
 public class PercolController {
@@ -43,6 +43,8 @@ public class PercolController {
     @ResponseBody // 이 애노테이션은 메소드의 반환값이 응답 본문이 될 것임을 나타내며, 일반적으로 JSON 형식으로 변환됩니다.
     public UserDTO login(@RequestBody Long id) { // @PathVariable 대신 @RequestBody 사용
         UserDTO userDto = userService.findUserById(id);
+
+        log.info(userDto.toString());
         return userDto;
     }
 
@@ -79,7 +81,7 @@ public class PercolController {
         response.put("totalPages", perFumeList.getTotalPages());
         response.put("totalElements", perFumeList.getTotalElements());
         response.put("currentPage", pageable.getPageNumber());
-
+        log.info(response.toString());
         return response;
     }
 
@@ -100,7 +102,7 @@ public class PercolController {
         response.put("totalPages", incenseList.getTotalPages());
         response.put("totalElements", incenseList.getTotalElements());
         response.put("currentPage", pageable.getPageNumber());
-
+        log.info(response.toString());
         return response;
     }
 
@@ -109,8 +111,13 @@ public class PercolController {
     public List<PerfumeDTO> PerfumeFind(@PathVariable String name ,Model model){
         List<PerfumeDTO> PerfumeDTOList = storeService.findName(name);
 
-        log.info("PerfumeDTOList: {}", PerfumeDTOList);
+
         model.addAttribute("perfumeList", PerfumeDTOList);
+
+
+        log.info("PerfumeDTOList: {}", PerfumeDTOList);
+        log.info("PerfumeDTOList: {}",
+                PerfumeDTOList.toString());
 
         return PerfumeDTOList;
     }
@@ -122,13 +129,15 @@ public class PercolController {
         UserDTO userDto = userService.findUserById(id);
         model.addAttribute("user", userDto);
 
+        log.info(userDto.toString());
+
         return userDto; // myPage.html 템플릿으로 반환
     }
 
 
     //MBTI 테스트
     @GetMapping("/Mbti/{id}")
-    public Map<String, IncenseDTO> getMbtiAction(@PathVariable Long id, Model model) {
+    public Map<String, IncenseDTO> mbti(@PathVariable Long id) {
         IncenseDTO incenseDto = incenseService.mbtiIncense(id);
         IncenseDTO incenseDto2 = incenseService.mbtiIncense(id+1);
 
@@ -136,7 +145,8 @@ public class PercolController {
         response.put("incenseDto", incenseDto);
         response.put("incenseDto2", incenseDto2);
 
-        return response;
+        log.info(response.toString());
 
+        return response;
     }
 }
