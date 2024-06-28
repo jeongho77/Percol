@@ -35,9 +35,11 @@ public class PercolController {
         return "delete";
     }
 
-    @PostMapping("/delete/{providerId}")
-    public String delete(@PathVariable Long id){
-        return "delete";
+    //회원탈퇴
+    @PostMapping("/delete")
+    public String delete(@ModelAttribute("id") Long id){
+        userService.delete(id);
+        return "main"; //메인화면으로
     }
 
     //향수
