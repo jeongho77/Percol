@@ -24,6 +24,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/percol")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PercolController {
 
     private static final Logger log = LoggerFactory.getLogger(PercolController.class);
