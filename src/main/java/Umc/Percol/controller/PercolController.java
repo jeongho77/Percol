@@ -15,10 +15,10 @@ public class PercolController {
         return "index";
     }
 
-    //로그아웃
+    //로그인 후 메인화면 정보
     @PostMapping("/delete/{providerId}")
     public String delete(@PathVariable Long id){
-        return "index";
+        return "delete";
     }
 
 
