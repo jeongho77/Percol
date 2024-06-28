@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/Percol")
+@RequestMapping("/percol")
 public class PercolController {
 
     private final StoreService storeService;

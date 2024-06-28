@@ -1,56 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Perfume Shop</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Title</title>
 </head>
 <body>
-<div class="container">
-    <h1 class="mt-5">Perfume Shop</h1>
+<button onclick="saveReq()">글작성</button>
 
-    <div class="row mt-3">
-        <div class="col-12">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Brand</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="perfume : ${perFumeList}">
-                    <td th:text="${perfume.id}">1</td>
-                    <td th:text="${perfume.name}">Perfume Name</td>
-                    <td th:text="${perfume.brand}">Brand Name</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>image</th>
+        <th>content</th>
+        <th>price</th>
+        <th>BuyUrl</th>
+    </tr>
+    <tr th:each="perfume : ${perFumeList}">
+        <td th:text="${perfume.id}"></td>
+        <td th:text="${perfume.name}"></td>
+        <td><img th:src="${perfume.image}" alt="Image" /></td>
+        <td th:text="${perfume.content}"></td>
+        <td th:text="${perfume.price}"></td>
+        <td><a th:href="${perfume.buyUrl}" th:text="${perfume.buyUrl}"></a></td>
+    </tr>
+</table>
+<!-- 첫번째 페이지로 이동 -->
+<!-- /perfume/paging?page=1 -->
+<a th:href="@{/perfume/paging(page=1)}">First</a>
 
-    <div class="row">
-        <div class="col-12">
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li class="page-item" th:classappend="${startPage == 1} ? 'disabled'">
-                        <a class="page-link" th:href="@{/PerfumeShop(page=${startPage - 1})}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item" th:each="pageNum : ${#numbers.sequence(startPage, endPage)}" th:classappend="${pageNum == ${pageable.pageNumber}} ? 'active'">
-                        <a class="page-link" th:href="@{/PerfumeShop(page=${pageNum})}" th:text="${pageNum}">1</a>
-                    </li>
-                    <li class="page-item" th:classappend="${endPage == ${perFumeList.totalPages}} ? 'disabled'">
-                        <a class="page-link" th:href="@{/PerfumeShop(page=${startPage + 1})}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
+<!-- 이전 링크 활성화 비활성화 -->
+<!-- perfumeList.getNumber() 사용자:2페이지 getNumber()=1 -->
+<a th:href="${perFumeList.first} ? '#' : @{/perfume/paging(page=${perfumeList.number})}">prev</a>
+
+<!-- 페이지 번호 링크(현재 페이지는 숫자만)
+        for(int page=startPage; page<=endPage; page++)-->
+<span th:each="page : ${#numbers.sequence(startPage, endPage)}">
+    <!-- 현재페이지는 링크 없이 숫자만 -->
+    <span th:if="${page == perFumeList.number + 1}" th:text="${page}"></span>
+    <!-- 현재페이지 번호가 아닌 다른 페이지번호에는 링크를 보여줌 -->
+    <span th:unless="${page == perFumeList.number + 1}">
+        <a th:href="@{/perporm/paging(page=${page})}" th:text="${page}"></a>
+    </span>
+</span>
+
+<!-- 다음 링크 활성화 비활성화
+    사용자: 2페이지, getNumber: 1, +2를해서 다음페이지인 3페이지 보여주기-->
+<a th:href="${perFumeList.last} ? '#' : @{/perfume/paging(page=${perFumeList.number + 2})}">next</a>
+<!-- 마지막 페이지로 이동 -->
+<a th:href="@{/perfume/paging(page=${perFumeList.totalPages})}">Last</a>
+
 </body>
+<script>
+    const saveReq = () => {
+        location.href = "/perfume/save";
+    }
+</script>
 </html>
